@@ -1,7 +1,7 @@
 module Day1 where
 
 import Data.List (foldr, sort)
-import Data.Map (Map)
+import Data.Map (Map, empty, insertWith, lookup)
 
 day1 :: IO ()
 day1 = do
@@ -37,4 +37,7 @@ part2 input = let
     in 5
 
 countOccurences :: [String] -> Map Int Int 
-countOccurences = undefined
+countOccurences = foldr f e
+    where
+        f x = insertWith (+) (read x) 1 
+        e = empty
