@@ -1,9 +1,7 @@
-{-# OPTIONS_GHC -Wno-unrecognised-pragmas #-}
-{-# HLINT ignore "Redundant if" #-}
 module Day2 where
 
 import Data.List
-import Debug.Trace
+
 day2 :: IO()
 day2 = do
     input <- readFile "inputs/day2.txt"
