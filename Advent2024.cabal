@@ -32,7 +32,7 @@ executable Advent2024
 library
   hs-source-dirs:      solutions
   exposed-modules:
-      General, Day1, Day2, Day3         
+      General, Day1, Day2, Day3, Day4         
   build-depends:
       base ^>=4.17.2.1,
       containers,

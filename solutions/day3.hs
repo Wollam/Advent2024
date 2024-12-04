@@ -1,9 +1,7 @@
-
 module Day3 where
 
 import Text.Regex.Base
 import Text.Regex.Posix
-import Data.Char (isDigit, isAlpha)
 
 day3 :: IO ()
 day3 = do
