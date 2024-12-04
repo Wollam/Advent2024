@@ -1,7 +1,5 @@
 module Day4 where
 
-import Debug.Trace
-
 day4 :: IO()
 day4 = do
     input <- readFile "inputs/day4.txt"
@@ -55,7 +53,7 @@ findValidXMAS2 (x, y) matrix = let
         , newX >= 0 && newX < boundx && newY >= 0 && newY < boundy
         ]
     chars = [(matrix !! yloc) !! xloc | (xloc, yloc) <- checkLocs]
-    in trace chars countChar 'M' chars == 2 && countChar 'S' chars == 2 && chars /= "MSMS" && chars /= "SMSM"
+    in countChar 'M' chars == 2 && countChar 'S' chars == 2 && chars /= "MSMS" && chars /= "SMSM"
 
 countChar :: Char -> String -> Int
 countChar _ [] = 0
