@@ -1,6 +1,6 @@
 module Day4 where
 
-day4 :: IO()
+day4 :: IO() 
 day4 = do
     input <- readFile "inputs/day4.txt"
     let rows = lines input
