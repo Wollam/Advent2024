@@ -11,8 +11,9 @@ day5 = do
     input <- readFile "inputs/day5.txt"
     let (rules, updates) = processInput5 input
     let answer1 = sum (mapMaybe (validUpdateNumber rules) updates)
-
-    print answer1
+    let newLists = map (reBuildLists rules) (unvalidLists rules updates)
+    let answer2 = sum (map (\x -> x !! (length x `div` 2) ) newLists)
+    print answer2
 
 processInput5 :: String -> (Map Int IntSet, [[Int]])
 processInput5 input = let
@@ -42,3 +43,14 @@ validUpdateCheck rules xs = checkReverse rules (reverse xs)
         checkReverse rules (x:xs) = not (any (`Set.member` ruleX) xs) && checkReverse rules xs
             where
                 ruleX = rules ! x
+
+unvalidLists :: Map Int IntSet -> [[Int]] -> [[Int]]
+unvalidLists rules = filter (not . validUpdateCheck rules)
+
+reBuildLists :: Map Int IntSet -> [Int] -> [Int]
+reBuildLists rules [] = []
+reBuildLists rules (x:xs) = if any (`Set.member` ruleX) xs 
+    then reBuildLists rules (xs++ [x])
+    else reBuildLists rules xs ++ [x]
+        where
+            ruleX = rules ! x
