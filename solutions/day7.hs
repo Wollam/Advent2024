@@ -28,5 +28,16 @@ countConfigs (total, vals) = let
 
 allPossibleCombos :: [Int] -> [Int]
 allPossibleCombos [x] = [x]
-allPossibleCombos (x:xs)  = [x + y | y <- allPossibleCombos xs] ++ [x * y | y <- allPossibleCombos xs]
+allPossibleCombos (x:xs)  = 
+    [x + y | y <- allPossibleCombos xs] ++ 
+    [x * y | y <- allPossibleCombos xs] ++ 
+    [x @|| y | y <- allPossibleCombos xs]
 
+(@||) :: Int -> Int -> Int
+x @|| y = x * 10 ^ numDigits y + y
+
+-- Helper function to calculate the number of digits in an integer
+numDigits :: Int -> Int
+numDigits n
+  | n < 10    = 1
+  | otherwise = 1 + numDigits (n `div` 10)
